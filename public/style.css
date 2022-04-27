@@ -1,0 +1,574 @@
+body{
+    margin: 0px;
+}
+#app {
+    display: grid;
+    grid-template-columns: minmax(0px,1fr) repeat(6, minmax(0,275px)) minmax(0px,1fr);
+}
+.xGrid{
+    grid-row: 1/2;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: minmax(0px,1fr) repeat(6, minmax(0,275px)) minmax(0px,1fr);
+}
+nav{
+    grid-row: 1/2;
+    grid-column: 1/-1;
+
+    display: grid;
+    grid-template-columns: minmax(0px,1fr) repeat(6, minmax(0,275px)) minmax(0px,1fr);
+}
+#NavHead{
+    grid-row: 1/2;
+    grid-column: 1/3;
+    font-size: 32px;
+    font-family: 'Public Sans', sans-serif;
+    text-decoration: none;
+    padding-left: 50px;
+    padding-top: 10px;
+    color: white;
+
+}
+#NavMenu{
+    grid-row: 1/2;
+    grid-column: 3/-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 50px;
+    padding-top: 20px;
+}
+#NavMenu > a {
+    font-size: 20px;
+    text-decoration: none;
+    padding-left: 79px;
+    font-family: 'Public Sans', sans-serif;
+    color: white;
+}
+#HeroImage{
+    grid-row: 1/3;
+    grid-column: 1/-1;
+    
+}
+#HeroImage > img {
+    width: 100%;
+}
+#HeroText{
+    color: white;
+    font-size: 70px;
+    font-family: 'Public Sans', sans-serif;
+    padding-left: 50px;
+    position: absolute;
+    top: 150px;
+    width: 600px;
+}
+#HeroSub{
+    color: white;
+    font-size: 32px;
+    font-family: 'Public Sans', sans-serif;
+    padding-left: 50px;
+    position: absolute;
+    top: 325px;
+
+}
+#choices{
+    grid-row: 3/4;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 100px;
+
+}
+h2{
+    font-size: 35px;
+    color: #F2B077;
+    font-family: 'Public Sans', sans-serif;
+    text-align: center;
+    margin: 0px !important;
+    font-weight: 600;
+}
+#BSC, #MC{
+    text-align: center;
+    align-items: center;
+    width: 300px;
+}
+
+#BSC > p {
+    text-align: center;
+    color: #CCCFD9;
+    font-size: 18px;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 400;
+}
+#pp{
+    text-align: center;
+    color: #CCCFD9;
+    font-size: 18px;
+    font-family: 'Public Sans', sans-serif;
+    
+}
+
+
+#MC > p {
+    text-align: center;
+    color: #CCCFD9;
+    font-size: 18px;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 400;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Public Sans', sans-serif;
+}
+button{
+    border: none;
+    background-color: #F2B077;
+    color: white !important;
+    font-size: 18px;
+    border-radius: 90px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.Cbutton{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+button > a{
+    padding: 15px,20px,15px,20px;
+}
+#box1{
+    grid-row: 4/5;
+    grid-column: 4/-1;
+    background-color: #4E7DA9;
+    margin-top: 100px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 100px;
+}
+h3{
+    color: white;
+    font-size: 36px;
+    font-family: 'Public Sans', sans-serif;
+    padding-left: 35px;
+    margin-bottom: 20px;
+}
+#box1 > p {
+    color:#CCCFD9;
+    font-size: 32px;
+    font-family: 'Public Sans', sans-serif;
+    padding-left: 35px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+#box2 {
+    grid-row: 5/6;
+    grid-column: 1/6;
+    background-color: #4E7DA9;
+    margin-top: 100px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#box2 > h3 {
+    text-align: right !important;
+    padding-right: 35px;
+    font-family: 'Public Sans', sans-serif;
+    margin-bottom: 20px;
+}
+#box2 > p {
+    color:#CCCFD9;
+    font-size: 32px;
+    margin-top: 20px;
+    padding-right: 35px;
+    font-family: 'Public Sans', sans-serif;
+    text-align: right;
+    font-weight: 400;
+}
+#box2 > button {
+    margin-left: 75%;
+    margin-bottom: 20px;
+    margin-right: 35px;
+}
+#box2 > button > a {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+footer{
+    grid-row: 6/7;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 50px;
+    border-top: .25px solid #CCCFD9;
+}
+footer > div {
+    margin-left: 50px;
+}
+.fHead{
+    color: #F2B077;
+    font-family: 'Public Sans', sans-serif;
+    margin-bottom: 15px;
+}
+footer > div > ul {
+    list-style-type: none;
+    font-family: 'Public Sans', sans-serif;
+    color:#CCCFD9;
+    
+}
+footer > div > ul > li {
+    margin-bottom: 15px;
+}
+.imp {
+    width: 350px;
+}
+
+
+#mealStuff{
+    grid-row: 3/4;
+    grid-column: 1/-1;
+}
+h1{
+    font-family: 'Public Sans', sans-serif;
+    color: #F2B077;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: 600;
+    
+}
+h4 {
+    font-family: 'Public Sans', sans-serif;
+    color: #F2B077;
+    font-size: 25px;
+    text-align: center;
+}
+#CBSinput{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 75px;
+    align-items: center;
+}
+.BSInput {
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #969595;
+    border: none;
+    height: 30px;
+    text-align: center;
+}
+#calcButton{
+    width: 30%;
+    text-align: center;
+    
+    margin-top: 20px;
+}
+#calcButton2{
+    margin-top: 45px;
+    width: 125px;
+    text-align: center;
+    
+}
+#reg{
+    background-color: #F5F5F5;
+}
+#RS1{
+    grid-row: 1/2;
+    grid-column: 1/-1;
+    height: 200px;
+}
+#whiteBlock{
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    height: 1300px;
+    width: 50%;
+    background-color: white;
+    margin-left: 25%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#whiteBlock2{
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    height: 400px;
+    width: 50%;
+    background-color: white;
+    margin-left: 25%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#RS2{
+    grid-row: 3/4;
+    grid-column: 1/-1;
+    height: 200px;
+}
+h5{
+    font-family: 'Public Sans', sans-serif;
+    text-align: center;
+    color: #6B90BF;
+    font-size: 32px;
+}
+#RegBlock{
+    display: grid;
+    justify-content: center;
+}
+#IP{
+    margin-bottom: 20px;
+    width: 300px;
+}
+#RegButton{
+    justify-content: end;
+}
+#RegBlock2{
+    display: grid;
+    justify-content: center;
+}
+#regButton{
+    background-color: #4E7DA9;
+    width: 100px;
+}
+.closeButton{
+    margin-left: 90%;
+    margin-top: 10px;
+}
+.navButton{
+    font-size: 14px;
+    margin-left: 50px;
+}
+.goto{
+    color: grey;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.fResults{
+    display: flex;
+    flex-direction: column;
+}
+.foodResult {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    justify-content: center;
+    align-items: center;
+}
+.FScarbs{
+    font-family: 'Public Sans', sans-serif;
+    margin-left: 3em;
+    font-size: 16px;
+}
+.FSname{
+    font-size: 16px;
+    font-family: 'Public Sans', sans-serif;
+}
+.FSadd{
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    margin-left: 3em;
+}
+.hund{
+    width: 100% !important;
+}
+.added{
+    font-size: 16px;
+    color: #969595;
+}
+.navButtons{
+    background: none;
+    box-shadow: none;
+    font-size: 14px !important;
+    padding-left: 50px;
+}
+.long{
+    height: 1300px !important;
+}
+.not{
+    font-size: 16px;
+    color: #969595;
+    width: 300px;
+    text-align: center; 
+}
+.er{
+    text-align: center;
+    color: red;
+    padding-left: 0px;
+    font-size: 12px;
+}
+
+
+
+
+@media only screen and (max-width: 800px){
+    #box2 > button {
+        margin-left: 68%;
+    }
+    #NavMenu > a {
+        font-size: 14px;
+        padding-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #NavMenu {
+        display: none;
+    }
+    #NavHead {
+        grid-column: 1/-1;
+        text-align: center;
+        padding-left: 0px;
+    }
+    #HeroText {
+        font-size: 25px;
+        top: 70px;
+        width: 225px;
+        padding-left: 25px;
+    }
+    #HeroSub {
+        font-size: 14px;
+        padding-left: 25px;
+        top: 130px;
+    }
+    #choices {
+        flex-direction: column;
+        align-items: center;
+    }
+    #BSC {
+        margin-bottom: 100px;
+    }
+    #box1 {
+        grid-column: 1/-1;
+    }
+    #box2{
+        grid-column: 1/-1;
+    }
+    #box2 > button {
+        margin-left: 60%;
+    }
+    footer{
+        flex-direction: column;
+    }
+    .Fcalc{
+        margin-left: 0px;
+    }
+    h3{
+        text-align: center !important;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #box2 > h3{
+        text-align: center !important;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #box1 > p {
+        text-align: center;
+        padding-right: 20px;
+        padding-left: 20px;
+
+    }
+    #box2 > p {
+        text-align: center;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    h1{
+        font-size: 32px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+    .Cbutton {
+        margin-top: 10px;
+    }
+    #fH {
+        margin-top: 20px;
+    }
+    #pp {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 0px;
+    }
+    #CBSinput {
+        margin-bottom: 0px;
+    }
+    #whiteBlock{
+        width: 75%;
+        margin-left: 12.5%;
+    }
+    #whiteBlock2{
+        width: 75%;
+        margin-left: 12.5%;
+    }
+    #IP{
+        width: 200px;
+        justify-content: center;
+        margin-left: 16%;
+    }
+    #RS1 {
+        height: 100px;
+    }
+    #RS2{
+        height: 100px;
+    }
+    #calcButton {
+        width: 50%;
+        
+    }
+    .lm{
+        margin-left: 0px !important;
+    }
+    .FSname{
+        font-size: 10px;
+    }
+    .FScarbs{
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 380px){
+    #box1 > p {
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+    #box2 > p{
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+    h3{
+        font-size: 32px;
+    }
+    #box2 > button {
+        margin-left: 58%;
+        margin-bottom: 30px;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+    h3{
+        font-size: 26px;
+    }
+    #box2 > button {
+        margin-left: 25%;
+        width: 50%;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .BSInput {
+        width: 250px !important;
+    }
+    #calcButton2 {
+        width: 50%;
+        
+    }
+    #whiteBlock {
+        width: 85%;
+        margin-left: 7.5%;
+    }
+    #whiteBlock2 {
+        width: 85%;
+        margin-left: 7.5%;
+    }
+    
+}
+
+

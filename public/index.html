@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InculinCalc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+    
+        <div class="xGrid" v-if="SignInBool == true">
+            <div id="RS1"></div>
+            <div id="whiteBlock2">
+                <button class="closeButton" v-on:click="close">X</button>
+                <h5>SIGN IN</h5>
+                <div id="RegBlock">
+                    <input type="text" v-model="email" id="IP" class="BSInput lm" placeholder="Email"><br>
+                    <input type="text" v-model="password" id="IP" class="BSInput lm" placeholder="Password"><br>
+                </div>
+
+                <div id="RegBlock2">
+                    <a class="goto" v-on:click="SignUpButton">Register</a>
+                    <button v-on:click="postSession" id="regButton">Sign In &rarr;</button>
+                </div>
+
+            </div>
+            <div id="RS2"></div>
+
+        </div>
+
+        <div class="xGrid" v-else-if="SignUpBool == true">
+
+            <div class="xGrid" >
+                <div id="RS1"></div>
+                <div id="whiteBlock">
+                    <button class="closeButton" v-on:click="close">X</button>
+                    <h5>REGISTER</h5>
+                    <div id="RegBlock">
+                        <p class="er">{{ errors.firstName }}</p>
+                        <input type="text" v-model="firstName" id="IP" class="BSInput lm" placeholder="First Name"><br>
+                        <p class="er">{{ errors.lastName }}</p>
+                        <input type="text" v-model="lastName" id="IP" class="BSInput lm" placeholder="Last Name"><br>
+                        <p class="er">{{ errors.email }}</p>
+                        <input type="text" v-model="email" id="IP" class="BSInput lm" placeholder="Email"><br>
+                        <p class="er">{{ errors.password }}</p>
+                        <input type="text" v-model="password" id="IP" class="BSInput lm" placeholder="Password"><br>
+
+                        <p class="er">{{ errors.targetBS }}</p>
+                        <input type="text" v-model="targetBS" id="IP" class="BSInput lm" placeholder="Target Blood Sugar"><br>
+                        <p class="er">{{ errors.InsulinCR }}</p>
+                        <input type="text" v-model="InsulinCR" id="IP" class="BSInput lm" placeholder="Insulin:Carb Ratio"><br>
+                        <p class="er">{{ errors.CarbF }}</p>
+                        <input type="text" v-model="CarbF" id="IP" class="BSInput lm" placeholder="Corrections"><br>
+                        <p class="er">{{ errors.doseUnit }}</p>
+                        <input type="text" v-model="doseUnit" id="IP" class="BSInput lm" placeholder="Insulin Unit Dosage"><br>
+                    </div>
+
+                    <div id="RegBlock2">
+                        <a class="goto" v-on:click="SignInButton">Sign In</a>
+                        <button v-on:click="createProfile" id="regButton">Save &rarr;</button>
+                    </div>
+
+                </div>
+                <div id="RS2"></div>
+
+            </div>
+
+            
+        </div>
+
+        <!-- edit profile -->
+        <div class="xGrid" v-else-if="editPageBool == true">
+            <div id="RS1"></div>
+            <div id="whiteBlock2" class="long">
+                <button class="closeButton" v-on:click="close">X</button>
+                <h5>Edit Profile</h5>
+               <div id="RegBlock">
+                        <p class="not">first name</p>
+                        <input type="text" v-model="firstName" id="IP" class="BSInput " placeholder=firstName><br>
+                        <p class="not">last name</p>
+                        <input type="text" v-model="lastName" id="IP" class="BSInput " placeholder=lastName><br>
+                        <p class="not">email</p>
+                        <input type="text" v-model="email" id="IP" class="BSInput " placeholder=email><br>
+                        <p class="not">password</p>
+                        <input type="text" v-model="password" id="IP" class="BSInput " placeholder=password><br>
+                        <p class="not">target blood sugar</p>
+                        <input type="text" v-model="targetBS" id="IP" class="BSInput " placeholder=targetBS><br>
+                        <p class="not">insulin to carb ratio</p>
+                        <input type="text" v-model="InsulinCR" id="IP" class="BSInput " placeholder=InsulinCR><br>
+                        <p class="not">carb factor</p>
+                        <input type="text" v-model="CarbF" id="IP" class="BSInput " placeholder=CarbF><br>
+                        <p class="not">dose unit</p>
+                        <input type="text" v-model="doseUnit" id="IP" class="BSInput " placeholder=doseUnit><br>
+                </div>
+
+                <div id="RegBlock2">
+                    <button v-on:click="EditProfile" id="regButton">Edit Profile</button>
+                </div>
+
+            </div>
+            <div id="RS2"></div>
+        </div>
+
+        <!-- meal correction -->
+    <div v-else-if="mealBool == true"  class="xGrid">
+        <div id="HeroImage">
+            <img src="images/mealHero.jpg" alt="homehero">
+        
+        </div>
+
+        <nav>
+            <a id="NavHead" href="index.html">InculinCalc</a>
+            <div id="NavMenu">
+                <button class="navButtons" v-on:click="homeButton" >Home</button>
+                <button class="navButtons"v-on:click="infoButton">Info</button>
+                <button class="navButton" v-on:click="EditProfilePage">hello {{usersProfile.firstName}}</button>
+            </div>
+        </nav>
+        <div id="mealStuff">
+            <h1>MEAL CORRECTION</h1>
+            <div id="CBSinput">
+                <input class="BSInput imp" type="text" v-model="CurrentBloodSugar" placeholder="CURRENT BLOOD SUGAR..">
+                <h4>FOOD LIBRARY</h4>
+                <input class="BSInput imp"  v-model="SearchQuery" type="text" placeholder="ENTER FOOD"><br>
+                <button id="calcButton" class="Cbutton" v-on:click="searchButton">search</button>
+                <div v-if="SearchResults.length > 0" class="fResults">
+                    <div v-for="result in SearchResults" class="foodResult">
+                        <p class="FSname">{{ result.name }}</p>
+                        <p class="FScarbs">{{ result.carbs}} grams</p>
+                        <button class="FSadd" v-on:click="addFood(result)">add</button>
+                    </div>
+
+                </div>
+                <div v-if="mealFood.length > 0" class="fResults">
+                    <div v-for="food in mealFood" class="foodResult">
+                        <h4 class="added"> {{food.name}} has {{food.carbs}} grams of carbs</h4>
+
+                    </div>
+                    <h2> {{totalCarbs}} grams total</h2>
+
+                </div>
+                <button id="calcButton" class="Cbutton" v-on:click="mealCorrectionCalc">calculate</button>
+                <div v-if="ShowTotalBool == true">
+                    <h1>{{ totalInsulin }} units of insulin needed.</h1>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">CALCULATIONS</li>
+                    <li>Blood Sugar Correction</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RESOURCES</li>
+                    <li>Food Library</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RECOMENDATIONS</li>
+                    <li>Diabetes.org</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- blood sugar correction -->
+    <div v-else-if="bsBool == true" class="xGrid">
+        <div id="HeroImage">
+            <img src="images/DBS.jpg" alt="homehero">
+            
+        </div>
+
+        <nav>
+            <a id="NavHead" href="index.html">InculinCalc</a>
+            <div id="NavMenu">
+                <button class="navButtons" v-on:click="homeButton" >Home</button>
+                <button class="navButtons" v-on:click="infoButton">Info</button>
+                <button class="navButton" v-on:click="EditProfilePage">hello {{usersProfile.firstName}}</button>
+            </div>
+        </nav>
+        
+        <div id="mealStuff">
+            <h1>BLOOD SUGAR CORRECTION</h1>
+            <div id="CBSinput">
+                <input class="BSInput imp" type="number" v-model="CurrentBloodSugar" placeholder="CURRENT BLOOD SUGAR..">
+                <button id="calcButton2" class="Cbutton" v-on:click="bsCorrection">calculate</button>
+            </div>
+            <div v-if="ShowTotalBool == true">
+                <h1>{{ totalInsulin }} units of insulin needed.</h1>
+            </div>
+        </div>
+
+        <footer>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">CALCULATIONS</li>
+                    <li>Blood Sugar Correction</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RESOURCES</li>
+                    <li>Food Library</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RECOMENDATIONS</li>
+                    <li>Diabetes.org</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- info page -->
+
+    <div v-else-if="infoBool == true" class="xGrid">
+        <div id="HeroImage">
+            <img src="images/hand.jpg" alt="homehero">
+        </div>
+
+        <nav>
+            <a id="NavHead" href="index.html">InculinCalc</a>
+            <div id="NavMenu">
+                <button class="navButtons" v-on:click="homeButton" >Home</button>
+                <button class="navButtons"v-on:click="infoButton">Info</button>
+                <button class="navButton" v-if="sessionBool == false" v-on:click="SignInButton">Sign In</button>
+                <button class="navButton" v-if="sessionBool == false" v-on:click="SignUpButton">Sign Up</button>
+                <button class="navButton" v-if="sessionBool == true" v-on:click="EditProfilePage">hello {{usersProfile.firstName}}</button>
+            </div>
+        </nav>
+
+        <div id="mealStuff">
+            <h1 id="fH">FACTS</h1>
+            <div id="CBSinput">
+                <p id="pp">We are dedicated to your health, and make sure we 
+                    are up to date with all our calculations</p>
+            </div>
+        </div>
+
+        <div id="box2">
+            <h3>BLOOD SUGAR CORRECTION CALCULATIONS</h3>
+            <p>Blood sugar correction dose = 
+                Difference between actual blood sugar and target blood sugar*
+           ÷ correction factor.
+           
+           *Actual blood sugar minus target blood sugar</p>
+        </div>
+
+        <div id="box1">
+            <h3>MEAL CORRECTION CALCULATIONS</h3>
+            <p>Meal Correction insulin dose =
+                Total grams of Carbs in the meal
+                ÷ grams of Carbs disposed by 1 unit of insulin
+                (the grams of Carbs disposed of by 1 unit of insulin is the bottom number or denominator of the Insulin:Carb ratio).</p>
+            
+        </div>
+
+        <footer>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">CALCULATIONS</li>
+                    <li>Blood Sugar Correction</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RESOURCES</li>
+                    <li>Food Library</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RECOMENDATIONS</li>
+                    <li>Diabetes.org</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- home page -->
+
+    <div v-else class="xGrid">
+        <div id="HeroImage">
+            <img src="images/hero1.jpg" alt="homehero">
+            <div id="HeroText">Quick & Easy Insulin Calculator</div>
+            <div v-on:click="SignUpButton" id="HeroSub">Sign up today for free &rarr;</div>
+        </div>
+
+        <nav>
+            <a id="NavHead" href="index.html">InculinCalc</a>
+            <div id="NavMenu">
+                <button class="navButtons" href="index.html">Home</button>
+                <button class="navButtons"v-on:click="infoButton">Info</button>
+                <button class="navButton" v-if="sessionBool == false" v-on:click="SignInButton">Sign In</button>
+                <button class="navButton" v-if="sessionBool == false" v-on:click="SignUpButton">Sign Up</button>
+                <button class="navButton" v-if="sessionBool == true" v-on:click="EditProfilePage">hello {{usersProfile.firstName}}</button>
+                
+
+            </div>
+        </nav>
+
+        <div id="choices">
+            <div id="BSC">
+                <h2>BLOOD SUGAR CORRECTION</h2>
+                <p>Calculate how much insulin to take to correct your blood sugar</p>
+                <button v-if="sessionBool == true" class="Cbutton" v-on:click="bsButton">calculate &rarr;</button>
+                <button v-if="sessionBool == false" v-on:click="SignUpButton" class="Cbutton">calculate &rarr;</button>
+            </div>
+
+            <div id="MC">
+                <h2>MEAL CORRECTION</h2>
+                <p>Want to eat? Lets factor that meal into the calculation! Try our food library.</p>
+                <button v-if="sessionBool == true" class="Cbutton" v-on:click="mealButton">calculate &rarr;</button>
+                <button v-if="sessionBool == false" v-on:click="SignUpButton" class="Cbutton">calculate &rarr;</button>
+            </div>
+        </div>
+
+        <div id="box1">
+            <h3>WHO WANTS TO DO MATH EVERY DAY?</h3>
+            <p>We can be a trusted source so you don’t have to worry about it.</p>
+        </div>
+
+        <div id="box2">
+            <h3>CHECK OUT OUR FORMULAS</h3>
+            <p>Have peace in mind in knowing we have your back.</p>
+            <button v-on:click="infoButton">info &rarr;</button>
+        </div>
+
+        <footer>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">CALCULATIONS</li>
+                    <li>Blood Sugar Correction</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RESOURCES</li>
+                    <li>Food Library</li>
+                </ul>
+            </div>
+            <div class="Fcalc">
+                <ul>
+                    <li class="fHead">RECOMENDATIONS</li>
+                    <li>Diabetes.org</li>
+                    <li>Meal Correction</li>
+                </ul>
+            </div>
+        </footer>  
+    </div> 
+    
+
+    
+
+
+</div>
+
+
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
